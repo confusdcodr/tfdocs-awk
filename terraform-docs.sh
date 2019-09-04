@@ -7,7 +7,7 @@ command -v terraform-docs > /dev/null 2>&1 || ( echo "terraform-docs not availab
 if [[ "$(terraform version | head -1)" =~ 0\.12 ]]; then
     TMP_FILE="$(mktemp /tmp/terraform-docs-XXXXXXXXXX)"
     # shellcheck disable=SC2035
-    awk -f scripts/terraform-docs.awk *.tf > "${TMP_FILE}"
+    awk -f terraform-docs.awk *.tf > "${TMP_FILE}"
     terraform-docs "$1" "${TMP_FILE}"
     rm -f "${TMP_FILE}"
 else
